@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修改数据</title>
+    <style type="text/css">
+        body {
+            margin: 0 20px;
+            line-height: 1;
+        }
+
+        a {
+            text-decoration-line: none;
+        }
+
+        .title-wrapper {
+            margin-bottom: 10px;
+        }
+
+        .title-wrapper input {
+            width: 300px;
+        }
+
+        .content-wrapper textarea {
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">修改数据</h1>
+    <div>
+        <div class="title-wrapper">
+            id:<input id="pid">
+        </div>
+        <div class="title-wrapper">
+            account:<input id="account">
+        </div>
+        <div class="title-wrapper">
+            password:<input id="password">
+        </div>
+        <div class="title-wrapper">
+            mark:<input id="mark">
+        </div>
+
+        <div class="content-wrapper">
+            slug:<input id="slug"></textarea>
+        </div>
+        <div class="content-wrapper">
+            typeId:<input id="typeId"></textarea>
+        </div>
+        <div class="content-wrapper">
+            remark:<textarea id="remark"></textarea>
+        </div>
+        <div>
+            <button id="btn-create">修改</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script>
+        // 发送 post 请求
+        function post(url, data = {}) {
+            return $.ajax({
+                type: 'post',
+                url: url,
+                data: JSON.stringify(data),
+                contentType: "application/json",
+            })
+        }
+
+        // 获取 dom 元素
+        $btnCreate = $('#btn-create')
+
+        // 提交数据
+        $btnCreate.click(() => {
+            $pid = $('#pid').val()
+            $password = $('#password').val()
+            $account = $('#account').val()
+            $remark = $('#remark').val()
+            $mark = $('#mark').val()
+            $typeId = $('#typeId').val()
+            $slug = $('#slug').val()
+
+            if ($pid === '') {
+                alert('id不能为空')
+                return
+            } else if ($account === '' && $password === '' && $mark === '' && $remark == '') {
+                alert('修改内容不能为空')
+                return
+            }
+
+            const url = '/api/account/alter'
+            const data = {
+                "pid": $pid,
+                "account": $account,
+                "password": $password,
+                "mark": $mark,
+                "remark": $remark,
+                "slug": $slug,
+                "typeId": $typeId
+            }
+
+            post(url, data).then(res => {
+                if (res.errno !== 0) {
+                    alert('操作错误')
+                    return
+                }
+                alert('修改成功')
+                //location.href = '/admin.html'
+            })
+        })
+    </script>
+</body>
+
+</html>
