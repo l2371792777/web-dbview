@@ -1,0 +1,11 @@
+2021-11-19 17:00:21: 
+2021-11-19 17:00:21: > koa2-weibo-learn@0.1.0 prd
+2021-11-19 17:00:21: > cross-env NODE_ENV=dev nodemon bin/www
+2021-11-19 17:00:21: 
+2021-11-19 17:00:21: [33m[nodemon] 1.19.4[39m
+2021-11-19 17:00:21: [33m[nodemon] to restart at any time, enter `rs`[39m
+2021-11-19 17:00:21: [33m[nodemon] watching dir(s): *.*[39m
+2021-11-19 17:00:21: [33m[nodemon] watching extensions: js,mjs,json[39m
+2021-11-19 17:00:21: [32m[nodemon] starting `node bin/www`[39m
+2021-11-19 17:00:26: Executing (default): SELECT 1+1 AS result
+2021-11-19 17:00:26: ok
