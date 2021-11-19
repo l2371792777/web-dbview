@@ -78,7 +78,7 @@
 
         // 提交数据
         $btnCreate.click(() => {
-            $pid = $('#pid').val()
+            $id = $('#pid').val()
             $password = $('#password').val()
             $account = $('#account').val()
             $remark = $('#remark').val()
@@ -89,7 +89,8 @@
             if ($pid === '') {
                 alert('id不能为空')
                 return
-            } else if ($account === '' && $password === '' && $mark === '' && $remark == '') {
+            } else if ($account === '' && $password === '' && $mark === '' && $remark == '' && $typeId == '' &&
+                $slug == '') {
                 alert('修改内容不能为空')
                 return
             }
