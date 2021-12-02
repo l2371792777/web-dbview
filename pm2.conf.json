@@ -1,7 +1,7 @@
 {
     "apps": {
         "name": "db-manager-server",
-        "script": "npm run prd",
+        "script": "bin/www",
         "watch": true,
         "ignore_watch": [
             "node_modules",
@@ -13,7 +13,8 @@
         "log_date_format": "YYYY-MM-DD HH:mm:ss",
         "env": {
             "NODE_ENV": "production",
-            "REMOTE_ADDR": ""
+            "REMOTE_ADDR": "",
+            "PORT": 3030
         },
         "env_dev": {
             "NODE_ENV": "development",
