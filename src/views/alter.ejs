@@ -86,7 +86,7 @@
             $typeId = $('#typeId').val()
             $slug = $('#slug').val()
 
-            if ($pid === '') {
+            if ($id === '') {
                 alert('id不能为空')
                 return
             } else if ($account === '' && $password === '' && $mark === '' && $remark == '' && $typeId == '' &&
@@ -97,7 +97,7 @@
 
             const url = '/api/account/alter'
             const data = {
-                "pid": $pid,
+                "pid": $id,
                 "account": $account,
                 "password": $password,
                 "mark": $mark,
