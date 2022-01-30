@@ -4,6 +4,7 @@
 
 const router = require('koa-router')()
 const { selectAccount, createAccount, deleteAccount, alterAccount } = require('../../controller/account')
+const { alter } = require('../../server/account')
 
 router.prefix('/api/account')
 
@@ -23,6 +24,7 @@ router.post('/delete', async (ctx, next) => {
 })
 router.post('/alter', async (ctx, next) => {
     const { id, account, password, mark, remark, slug, typeId } = ctx.request.body
+    alter("mes:... "+id+remark+account)
     ctx.body = await alterAccount({ id, account, password, mark, remark, slug, typeId })
 })
 
