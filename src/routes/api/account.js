@@ -24,7 +24,6 @@ router.post('/delete', async (ctx, next) => {
 })
 router.post('/alter', async (ctx, next) => {
     const { id, account, password, mark, remark, slug, typeId } = ctx.request.body
-    alter("mes:... "+id+remark+account)
     ctx.body = await alterAccount({ id, account, password, mark, remark, slug, typeId })
 })
 
