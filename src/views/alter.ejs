@@ -37,6 +37,9 @@
         <div class="title-wrapper">
             id:<input id="pid">
         </div>
+        <div>
+            <button id="btn-getinfo">获取数据</button>
+        </div>
         <div class="title-wrapper">
             account:<input id="account">
         </div>
@@ -76,6 +79,32 @@
         // 获取 dom 元素
         $btnCreate = $('#btn-create')
 
+        // 根据pid获取数据
+        $btnCreate.click(() => {
+            $old_id = $('#pid').val()
+            
+
+            if ($old_id === '') {
+                alert('id不能为空')
+                return
+            } 
+
+            //获取数据
+            const url = '/api/account/list'
+            const data = {
+                "id": $old_id,
+            }
+
+            post(url, data).then(res => {
+                if (res.errno !== 0) {
+                    alert('账号不存在')
+                    return
+                }
+                alert(res.data)
+                //打印信息  
+            })
+        })
+
         // 提交数据
         $btnCreate.click(() => {
             $id = $('#pid').val()
@@ -95,6 +124,10 @@
                 return
             }
 
+            if($id!=$old_id){
+                alert("id不一致")
+                return
+            }
             const url = '/api/account/alter'
             const data = {
                 "id": $id,
