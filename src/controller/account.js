@@ -19,7 +19,7 @@ async function selectAccount({ id, account, mark, slug, typeId }) {
     if (!result) {
         return new ErrorModel(selectAccountFailInfo)
     }
-    return result
+    return new SuccessModel(result)
 }
 
 async function createAccount({ account, password, mark, remark, slug, typeId }) {
