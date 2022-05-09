@@ -4,19 +4,19 @@
 
 const router = require('koa-router')()
 const { selectAccount, createAccount, deleteAccount, alterAccount } = require('../../controller/account')
-const { alter } = require('../../server/account')
 
 router.prefix('/api/account')
 
 
 router.post('/list', async (ctx, next) => {
-    const { id, account, mark, slug, typeId } = ctx.request.body
-    ctx.body = await selectAccount({ id, account, mark, slug, typeId })
+    const { id, account, mark, typeId } = ctx.request.body
+    ctx.body = await selectAccount({ id, account, mark, typeId })
 })
 
 router.post('/new', async (ctx, next) => {
-    const { account, password, mark, remark, slug, typeId } = ctx.request.body
-    ctx.body = await createAccount({ account, password, mark, remark, slug, typeId })
+    const { account, password, mark, typeId } = ctx.request.body
+    let userId=1
+    ctx.body = await createAccount({ account, password, mark, userId, typeId })
 })
 
 router.post('/delete', async (ctx, next) => {
@@ -24,8 +24,8 @@ router.post('/delete', async (ctx, next) => {
     ctx.body = await deleteAccount(id)
 })
 router.post('/alter', async (ctx, next) => {
-    const { id, account, password, mark, remark, slug, typeId } = ctx.request.body
-    ctx.body = await alterAccount({ id, account, password, mark, remark, slug, typeId })
+    const { id, account, password, mark, typeId } = ctx.request.body
+    ctx.body = await alterAccount({ id, account, password, mark, typeId })
 })
 
 module.exports = router

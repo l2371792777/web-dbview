@@ -6,7 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
-
+const userApiRouter=require('./routes/api/user')
 const accountViewRouter = require('./routes/view/account')
 const accountApiRouter = require('./routes/api/account')
 
@@ -34,6 +34,7 @@ app.use(views(__dirname + '/views', {
 // })
 
 // routes
+app.use(userApiRouter.routes(), userApiRouter.allowedMethods())
 app.use(accountViewRouter.routes(), accountViewRouter.allowedMethods())
 app.use(accountApiRouter.routes(), accountApiRouter.allowedMethods())
 

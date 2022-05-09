@@ -18,14 +18,13 @@ async function destroy(id) {
     return result > 0
 }
 
-async function create({ account, password, mark, slug, remark, typeId = 1 }) {
+async function create({ account, password, mark, userId, typeId = 1 }) {
     const result = await Account.create(
         {
             account,
             password,
             mark,
-            slug: slug ? slug : mark,
-            remark: remark ? remark : '',
+            userId:userId,
             typeId
         }
     )
@@ -50,11 +49,9 @@ async function select({ id, account, mark, slug, typeId }) {
             id: { [Sequelize.Op.like]: `%${id}%` },
             account: { [Sequelize.Op.like]: `%${account}%` },
             mark: { [Sequelize.Op.like]: `%${mark}%` },
-            slug: { [Sequelize.Op.like]: `%${slug}%` },
             typeId: { [Sequelize.Op.like]: `%${typeId}%` },
         }
     })
-    console.log(JSON.stringify(result))
     return result
 }
 

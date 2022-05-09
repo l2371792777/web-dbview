@@ -5,9 +5,8 @@ const { Account } = require('../model/model')
 
 
     const test = await Account.findAll({
-
         where: {
-            mark: { [Sequelize.Op.like]: '%mark%' }
+            
         }
     })
     test.map(data => {

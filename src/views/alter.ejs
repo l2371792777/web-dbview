@@ -49,16 +49,10 @@
         <div class="title-wrapper">
             mark:<input id="mark">
         </div>
-
-        <div class="content-wrapper">
-            slug:<input id="slug"></textarea>
-        </div>
         <div class="content-wrapper">
             typeId:<input id="typeId"></textarea>
         </div>
-        <div class="content-wrapper">
-            remark:<textarea id="remark"></textarea>
-        </div>
+
         <div>
             <button id="btn-create">修改</button>
         </div>
@@ -105,10 +99,8 @@
                 
                 $('#password').val(res.data[0].password)
                 $('#account').val(res.data[0].account)
-                $('#remark').val(res.data[0].remark)
                 $('#mark').val(res.data[0].mark)
                 $('#typeId').val(res.data[0].typeId)
-                $('#slug').val(res.data[0].slug)
 
                 //打印信息  
             })
@@ -119,16 +111,13 @@
             $id = $('#pid').val()
             $password = $('#password').val()
             $account = $('#account').val()
-            $remark = $('#remark').val()
             $mark = $('#mark').val()
             $typeId = $('#typeId').val()
-            $slug = $('#slug').val()
 
             if ($id === '') {
                 alert('id不能为空')
                 return
-            } else if ($account === '' && $password === '' && $mark === '' && $remark == '' && $typeId == '' &&
-                $slug == '') {
+            } else if ($account === '' && $password === '' && $mark === '' && $typeId == '') {
                 alert('修改内容不能为空')
                 return
             }
@@ -143,8 +132,6 @@
                 "account": $account,
                 "password": $password,
                 "mark": $mark,
-                "remark": $remark,
-                "slug": $slug,
                 "typeId": $typeId
             }
 

@@ -38,6 +38,21 @@
             pid:<input id="pid">
         </div>
         <div>
+            <button id="btn-getinfo">获取数据</button>
+        </div>
+        <div class="title-wrapper">
+            account:<input id="account">
+        </div>
+        <div class="title-wrapper">
+            password:<input id="password">
+        </div>
+        <div class="title-wrapper">
+            mark:<input id="mark">
+        </div>
+        <div class="content-wrapper">
+            typeId:<input id="typeId"></textarea>
+        </div>
+        <div>
             <button id="btn-create">删除</button>
         </div>
     </div>
@@ -56,6 +71,39 @@
 
         // 获取 dom 元素
         $btnCreate = $('#btn-create')
+        $btnGetInfo = $('#btn-getinfo')
+
+        // 根据pid获取数据
+        $btnGetInfo.click(() => {
+            $old_id = $('#pid').val()
+
+
+            if ($old_id === '') {
+                alert('id不能为空')
+                return
+            }
+
+            //获取数据
+            const url = '/api/account/list'
+            const data = {
+                "id": $old_id
+            }
+
+            post(url, data).then(res => {
+                if (res.errno !== 0) {
+                    alert('账号不存在')
+                    return
+                }
+                
+                
+                $('#password').val(res.data[0].password)
+                $('#account').val(res.data[0].account)
+                $('#mark').val(res.data[0].mark)
+                $('#typeId').val(res.data[0].typeId)
+
+                //打印信息  
+            })
+        })
 
         // 提交数据
         $btnCreate.click(() => {

@@ -24,17 +24,12 @@ const Account = seq.define('account', {
     mark: {
         type: Sequelize.TEXT,
         allowNull: true,
-        comment:'归属'
-    },
-    slug:{
-        type:Sequelize.STRING,
-        allowNull:true,
-        comment:'关键字段'
-    },
-    remark: {
-        type: Sequelize.STRING,
-        allowNull: true,
         comment:'备注'
+    },
+    userId:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        comment:'用户id'
     },
     typeId: {
         type: Sequelize.INTEGER,
@@ -44,12 +39,34 @@ const Account = seq.define('account', {
     }
 })
 
+const User=seq.define("user",{
+    userName:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        comment:"用户名"
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        comment:"密码"
+    },
+    grade:{
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        comment:"权限"
+    }
+})
+
 
 Type.hasMany(Account,{
     foreignKey:'typeId'
 })
+User.hasMany(Account,{
+    foreignKey:'userId'
+})
 
 module.exports = {
     Account,
-    Type
+    Type,
+    User
 }

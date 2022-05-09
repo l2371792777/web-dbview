@@ -7,12 +7,11 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const { create, select, destroy, alter } = require('../server/account')
 
 
-async function selectAccount({ id, account, mark, slug, typeId }) {
+async function selectAccount({ id, account, mark, typeId }) {
     const data = {
         id: id ? id : '',
         account: account ? account : '',
         mark: mark ? mark : '',
-        slug: slug ? slug : '',
         typeId: typeId ? typeId : '',
     }
     const result = await select(data)
@@ -22,13 +21,12 @@ async function selectAccount({ id, account, mark, slug, typeId }) {
     return new SuccessModel(result)
 }
 
-async function createAccount({ account, password, mark, remark, slug, typeId }) {
+async function createAccount({ account, password, mark, userId, typeId }) {
     const data = {
         account,
         password,
         mark,
-        remark: remark ? remark : '',
-        slug: slug ? slug : '',
+        userId,
         typeId: typeId ? typeId : '1',
     }
 
@@ -50,12 +48,6 @@ async function alterAccount({ id, account, password, mark, remark, slug, typeId 
     }
     if (mark) {
         data.mark = mark
-    }
-    if (remark) {
-        data.remark = remark
-    }
-    if (slug) {
-        data.slug = slug
     }
     if (typeId) {
         data.typeId = typeId
