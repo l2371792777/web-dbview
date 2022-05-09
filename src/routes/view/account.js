@@ -5,6 +5,9 @@
 const router = require('koa-router')()
 
 //后续加入登录机制
+router.get('/', async (ctx,next) => {
+    await ctx.render('index')
+})
 router.get('/new', async (ctx,next) => {
     await ctx.render('new')
 })

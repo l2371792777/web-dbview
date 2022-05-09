@@ -8,6 +8,7 @@ const { alter } = require('../../server/account')
 
 router.prefix('/api/account')
 
+
 router.post('/list', async (ctx, next) => {
     const { id, account, mark, slug, typeId } = ctx.request.body
     ctx.body = await selectAccount({ id, account, mark, slug, typeId })

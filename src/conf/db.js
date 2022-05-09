@@ -8,7 +8,12 @@ const MYSQL_CONF={
     password:'ayanami',
     database:'myaccount' 
 }
+const REDIS_CONF={
+    host:'localhost',
+    port:'6379'
+}
 
 module.exports={
-    MYSQL_CONF
+    MYSQL_CONF,
+    REDIS_CONF
 }

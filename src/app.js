@@ -34,9 +34,9 @@ app.use(views(__dirname + '/views', {
 // })
 
 // routes
-
 app.use(accountViewRouter.routes(), accountViewRouter.allowedMethods())
 app.use(accountApiRouter.routes(), accountApiRouter.allowedMethods())
+
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
