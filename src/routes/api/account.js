@@ -10,13 +10,14 @@ router.prefix('/api/account')
 
 router.post('/list', async (ctx, next) => {
     const { id, account, mark, typeId } = ctx.request.body
-    ctx.body = await selectAccount({ id, account, mark, typeId })
+    let userName="ayanami"
+    ctx.body = await selectAccount({ id, account,userName, mark, typeId })
 })
 
 router.post('/new', async (ctx, next) => {
     const { account, password, mark, typeId } = ctx.request.body
-    let userId=1
-    ctx.body = await createAccount({ account, password, mark, userId, typeId })
+    let userName="ayanami"
+    ctx.body = await createAccount({ account, password, mark, userName, typeId })
 })
 
 router.post('/delete', async (ctx, next) => {
