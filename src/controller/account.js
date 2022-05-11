@@ -7,11 +7,12 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const { create, select, destroy, alter } = require('../server/account')
 
 
-async function selectAccount({ id, account, mark, typeId }) {
+async function selectAccount({ id, account, userName, mark, typeId }) {
     const data = {
         id: id ? id : '',
         account: account ? account : '',
         mark: mark ? mark : '',
+        userName: userName ? userName : '',
         typeId: typeId ? typeId : '',
     }
     const result = await select(data)
@@ -21,12 +22,12 @@ async function selectAccount({ id, account, mark, typeId }) {
     return new SuccessModel(result)
 }
 
-async function createAccount({ account, password, mark, userId, typeId }) {
+async function createAccount({ account, password, mark, userName, typeId }) {
     const data = {
         account,
         password,
         mark,
-        userId,
+        userName,
         typeId: typeId ? typeId : '1',
     }
 
@@ -39,7 +40,7 @@ async function createAccount({ account, password, mark, userId, typeId }) {
 
 async function alterAccount({ id, account, password, mark, remark, slug, typeId }) {
 
-    let data = {id}
+    let data = { id }
     if (account) {
         data.account = account
     }
@@ -52,7 +53,7 @@ async function alterAccount({ id, account, password, mark, remark, slug, typeId 
     if (typeId) {
         data.typeId = typeId
     }
-    console.log("data...."+JSON.stringify(data))
+    console.log("data...." + JSON.stringify(data))
     const result = await alter(data)
     if (!result) {
         return new ErrorModel(alterAccountFailInfo)

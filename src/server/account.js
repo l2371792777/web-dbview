@@ -2,7 +2,7 @@
  * @description account数据库操作
  */
 
-const { Account } = require('../db/model/model')
+const { Account,User } = require('../db/model/model')
 const { Sequelize } = require('sequelize')
 
 /**
@@ -18,7 +18,9 @@ async function destroy(id) {
     return result > 0
 }
 
-async function create({ account, password, mark, userId, typeId = 1 }) {
+async function create({ account, password, mark, userName, typeId = 1 }) {
+    // TODO 查找userId
+    let userId=1
     const result = await Account.create(
         {
             account,
@@ -43,14 +45,25 @@ async function alter(data) {
     return result > 0
 }
 
-async function select({ id, account, mark, slug, typeId }) {
+async function select({ id, account, mark, userName, typeId }) {
+    // TODO 查找userId
+    // 连表查询
+    console.log(userName)
     const result = Account.findAll({
         where: {
             id: { [Sequelize.Op.like]: `%${id}%` },
             account: { [Sequelize.Op.like]: `%${account}%` },
             mark: { [Sequelize.Op.like]: `%${mark}%` },
             typeId: { [Sequelize.Op.like]: `%${typeId}%` },
-        }
+        },
+        include:[
+            {
+                model:User,
+                where:{
+                    userName:userName
+                }
+            }
+        ]
     })
     return result
 }

@@ -1,6 +1,35 @@
 const { Account,User, Type } = require('../model/model')
 
 !(async function () {
+  Type.bulkCreate(
+    [{
+      type: '默认'
+  },
+  {
+      type:"网站"
+  },
+  {
+      type:"邮箱"
+  },
+  {
+      type:"游戏"
+  },
+  {
+      type:"android"
+  },
+  {
+      type:"ios"
+  }
+    ]
+  )
+  User.bulkCreate(
+    [{
+      userName:'ayanami',
+      password:'ayanami',
+      grade:1
+    }
+    ]
+  )
     Account.bulkCreate(
         [
             

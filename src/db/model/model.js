@@ -65,6 +65,13 @@ User.hasMany(Account,{
     foreignKey:'userId'
 })
 
+Account.belongsTo(User,{
+    foreignKey:'userId'
+})
+Account.belongsTo(Type,{
+    foreignKey:'typeId'
+})
+
 module.exports = {
     Account,
     Type,
