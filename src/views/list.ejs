@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>list</title>
-    <style type="text/css">
-        body {
-            margin: 0 20px;
-            line-height: 1;
-        }
-
-        a {
-            text-decoration-line: none;
-        }
-
-        .title-wrapper {
-            margin-bottom: 10px;
-        }
-
-        .title-wrapper input {
-            width: 300px;
-        }
-
-        .content-wrapper textarea {
-            width: 300px;
-            height: 150px;
-        }
-    </style>
-</head>
-
-<body>
+<%- include('layout/header', { title: '微博 - 404', isNav: true })%>
     <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">list</h1>
     <div>
         <form action="/api/account/list" method="post">
@@ -57,6 +24,4 @@
     <script>
         //ajax请求接口
     </script>
-</body>
-
-</html>
+<%- include('layout/footer')%>

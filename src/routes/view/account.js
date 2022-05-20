@@ -20,5 +20,8 @@ router.get('/alter', async (ctx,next) => {
 router.get('/list', async (ctx,next) => {
     await ctx.render('list')
 })
+router.get('/login', async (ctx,next) => {
+    await ctx.render('login')
+})
 
 module.exports = router
