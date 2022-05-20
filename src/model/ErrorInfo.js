@@ -52,6 +52,6 @@ module.exports={
     },
     selectAccountFailInfo:{
         errno:10011,
-        message:'数据不存在'
+        message:'数据出错'
     }
 }
