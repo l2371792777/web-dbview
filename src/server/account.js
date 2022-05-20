@@ -49,7 +49,7 @@ async function select({ id, account, mark, userId, typeId }) {
     console.log(userId)
     const result = Account.findAll({
         where: {
-            id: { [Sequelize.Op.like]: `%${id}%` },
+            id: id,
             account: { [Sequelize.Op.like]: `%${account}%` },
             mark: { [Sequelize.Op.like]: `%${mark}%` },
             typeId: { [Sequelize.Op.like]: `%${typeId}%` },
