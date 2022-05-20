@@ -4,30 +4,30 @@
 
 const { createAccountFailInfo, deleteAccountFailInfo, alterAccountFailInfo, selectAccountFailInfo } = require('../model/ErrorInfo')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')
-const { create, select, destroy, alter } = require('../server/account')
+const { create, select, destroy, alter,idTouserId } = require('../server/account')
 
 
-async function selectAccount({ id, account, userName, mark, typeId }) {
+async function selectAccount({userId, id, account, mark, typeId }) {
     const data = {
         id: id ? id : '',
         account: account ? account : '',
         mark: mark ? mark : '',
-        userName: userName ? userName : '',
+        userId: userId ? userId : '',
         typeId: typeId ? typeId : '',
     }
     const result = await select(data)
-    if (!result) {
+    if (!result||result.length===0) {
         return new ErrorModel(selectAccountFailInfo)
     }
     return new SuccessModel(result)
 }
 
-async function createAccount({ account, password, mark, userName, typeId }) {
+async function createAccount({ account, password, mark, userId, typeId }) {
     const data = {
         account,
         password,
         mark,
-        userName,
+        userId,
         typeId: typeId ? typeId : '1',
     }
 
@@ -38,8 +38,14 @@ async function createAccount({ account, password, mark, userName, typeId }) {
     return new SuccessModel()
 }
 
-async function alterAccount({ id, account, password, mark, remark, slug, typeId }) {
-
+async function alterAccount({ userId,id, account, password, mark, typeId }) {
+    // TODO 身份验证
+    const accountInfo=await idTouserId(id)
+    console.log("_____"+accountInfo)
+    if(accountInfo.userId!=userId){
+        return new ErrorModel(alterAccountFailInfo)
+    }
+    
     let data = { id }
     if (account) {
         data.account = account
@@ -61,7 +67,12 @@ async function alterAccount({ id, account, password, mark, remark, slug, typeId 
     return new SuccessModel()
 }
 
-async function deleteAccount(id) {
+async function deleteAccount(userId,id) {
+    const accountInfo=await idTouserId(id)
+    if(accountInfo.userId!=userId){
+        return new ErrorModel(deleteAccountFailInfo)
+    }
+    
     const result = await destroy(id)
     if (!result) {
         return new ErrorModel(deleteAccountFailInfo)

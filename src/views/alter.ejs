@@ -1,5 +1,5 @@
 
-<%- include('layout/header', { title: '微博 - 404', isNav: true })%>
+<%- include('layout/header', { title: '修改', isNav: true })%>
 
     <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">修改数据</h1>
     <div>
@@ -61,11 +61,10 @@
 
             post(url, data).then(res => {
                 if (res.errno !== 0) {
-                    alert('账号不存在')
+                    alert(res.message)
                     return
                 }
-                
-                
+                console.log(res)
                 $('#password').val(res.data[0].password)
                 $('#account').val(res.data[0].account)
                 $('#mark').val(res.data[0].mark)

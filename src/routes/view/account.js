@@ -3,21 +3,22 @@
  */
 
 const router = require('koa-router')()
+const { loginRedirect } = require('../../middleware/loginCheck')
 
 //后续加入登录机制
-router.get('/', async (ctx,next) => {
+router.get('/',loginRedirect, async (ctx,next) => {
     await ctx.render('index')
 })
-router.get('/new', async (ctx,next) => {
+router.get('/new',loginRedirect, async (ctx,next) => {
     await ctx.render('new')
 })
-router.get('/delete', async (ctx,next) => {
+router.get('/delete',loginRedirect, async (ctx,next) => {
     await ctx.render('delete')
 })
-router.get('/alter', async (ctx,next) => {
+router.get('/alter',loginRedirect, async (ctx,next) => {
     await ctx.render('alter')
 })
-router.get('/list', async (ctx,next) => {
+router.get('/list',loginRedirect, async (ctx,next) => {
     await ctx.render('list')
 })
 router.get('/login', async (ctx,next) => {
