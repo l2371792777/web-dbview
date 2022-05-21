@@ -47,21 +47,18 @@ async function alter(data) {
 async function select({ id, account, mark, userId, typeId }) {
     // 连表查询
     console.log(userId)
-    const result = Account.findAll({
-        where: {
-            id: id,
-            account: { [Sequelize.Op.like]: `%${account}%` },
+    let whereOpt={
+        account: { [Sequelize.Op.like]: `%${account}%` },
             mark: { [Sequelize.Op.like]: `%${mark}%` },
             typeId: { [Sequelize.Op.like]: `%${typeId}%` },
-        },
-        include:[
-            {
-                model:User,
-                where:{
-                    id:userId
-                }
-            }
-        ]
+            userId
+    }
+    if(id!=""){
+        whereOpt.id=id
+    }
+    const result = Account.findAll({
+        where: whereOpt,
+        attributes: ['id', 'account', 'password','mark','typeId'],
     })
     return result
 }
