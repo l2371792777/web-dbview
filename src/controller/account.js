@@ -42,12 +42,12 @@ async function createAccount({ account, password, mark, userId, typeId }) {
 async function alterAccount({ userId,id, account, password, mark, typeId }) {
     // TODO 身份验证
     const accountInfo=await idTouserId(id)
-    console.log("_____"+accountInfo)
+    console.log("_____"+JSON.stringify(accountInfo)+"__ "+userId)
     if(accountInfo.userId!=userId){
         return new ErrorModel(alterAccountFailInfo)
     }
     
-    let data = { id }
+    let data = { id,userId }
     if (account) {
         data.account = account
     }

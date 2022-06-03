@@ -23,11 +23,13 @@ router.post('/new',loginCheck, async (ctx, next) => {
 
 router.post('/delete',loginCheck, async (ctx, next) => {
     const { id } = ctx.request.body
-    ctx.body = await deleteAccount(ctx,id)
+    const userId=ctx.session.userInfo.id
+    ctx.body = await deleteAccount(userId,id)
 })
 router.post('/alter',loginCheck, async (ctx, next) => {
     const { id, account, password, mark, typeId } = ctx.request.body
-    ctx.body = await alterAccount({ ctx,id, account, password, mark, typeId })
+    const userId=ctx.session.userInfo.id
+    ctx.body = await alterAccount({ userId,id, account, password, mark, typeId })
 })
 
 module.exports = router

@@ -44,11 +44,11 @@ module.exports={
     },
     deleteAccountFailInfo:{
         errno:10010,
-        message:'创建失败'
+        message:'删除失败'
     },
     alterAccountFailInfo:{
         errno:10011,
-        message:'创建失败'
+        message:'修改失败'
     },
     selectAccountFailInfo:{
         errno:10011,

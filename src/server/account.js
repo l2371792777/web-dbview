@@ -35,10 +35,13 @@ async function create({ account, password, mark, userId, typeId = 1 }) {
 
 async function alter(data) {
     const id = data.id
+    const userId=data.userId
     delete data.id
+    delete data.userId
     const result = await Account.update(data, {
         where: {
-            id: id
+            id: id,
+            userId:userId
         }
     })
     return result > 0
@@ -64,13 +67,14 @@ async function select({ id, account, mark, userId, typeId }) {
 }
 
 async function idTouserId(id){
+    console.log("__id "+id)
     const result=Account.findOne({
         where:{
-            id:id
-        }
+            id
+        },
+        attributes: ['userId'],
     })
-    console.log("_____ "+result)
-    return result.dataValues
+    return result
 }
 
 module.exports = {
