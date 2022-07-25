@@ -1,18 +1,106 @@
 <%- include('layout/header', { title: '列表', isNav: true })%>
-    <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">list</h1>
-    <div>
-        <form action="/api/account/list" method="post">
-            <table>
-                <tr><td>account</td><td>:</td><td><input id="account" name="id" placeholder="可为空"></td></tr>  
-                <tr><td>password</td><td>:</td><td><input id="password" name="account" placeholder="可为空"></td></tr>
-                <tr><td>mark</td><td>:</td><td><input id="mark" name="mark" placeholder="可为空"></td></tr>
-                <tr><td>typeId</td><td>:</td><td><input id="typeId" name="typeId" placeholder="可为空"></td></tr> 
-                <tr><td></td><td></td><td><input type="submit" values="view" id="btn-create"></td></tr>
-            </table>
-        </form>
-    </div>
+<h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">list</h1>
+<div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
+    <table>
+        <tr>
+            <td>id</td>
+            <td>:</td>
+            <td><input id="id" name="id" placeholder="可为空"></td>
+        </tr>
+        <tr>
+            <td>account</td>
+            <td>:</td>
+            <td><input id="account" name="account" placeholder="可为空"></td>
+        </tr>
+        <tr>
+            <td>mark</td>
+            <td>:</td>
+            <td><input id="mark" name="mark" placeholder="可为空"></td>
+        </tr>
+        <tr>
+            <td>typeId</td>
+            <td>:</td>
+            <td><input id="typeId" name="typeId" placeholder="可为空"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button id="btn-create">提交</button></td>
+        </tr>
+        </td>
+        </tr>
+    </table>
+</div>
+<div style="overflow: auto; width:70%;height:300px;margin-left: 5%;margin-top: 10px;" id="showList">
+</div>
 
-    <script>
-        //ajax请求接口
-    </script>
+<script>
+    // 发送 post 请求
+    function post(url, data = {}) {
+        return $.ajax({
+            type: 'post',
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+        })
+    }
+    //生成表格
+    function createrList(data) {
+        let str = "<table style='border: 1px solid black;'>";
+        str += "<tr><th>id</th><th>account</th><th>password</th><th>mark</th><th>typeId</th></tr>";
+        for (let i = 0; i < data.length; i++) {
+            str += "<tr>";
+            for (let key in data[i]) {
+                str += "<td class='showList' data-clipboard-text='"+data[i][key]+"'>" + JSON.stringify(data[i][key]) + "</td>";
+            }
+            str += "</tr>"
+        }
+        str += "</table>";
+        return str;
+    }
+
+    // 获取 dom 元素
+    $btnCreate = $('#btn-create')
+
+    // 提交数据
+    $btnCreate.click(() => {
+        $id = $('#id').val()
+        $account = $('#account').val()
+        $mark = $('#mark').val()
+        $typeId = $('#typeId').val()
+
+        const url = '/api/account/list'
+        const data = {
+            "id": $id,
+            "account": $account,
+            "mark": $mark,
+            "typeId": $typeId
+        }
+
+        post(url, data).then(res => {
+            if (res.errno !== 0) {
+                alert(res.message)
+                return
+            }
+            $("#showList").html(createrList(res.data));
+            //复制表格内容
+            let btns = document.querySelectorAll('.showList');
+            let clipboard = new ClipboardJS(btns);
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+            });
+            clipboard.on('error', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+            });
+            //location.href = '/admin.html'
+        })
+    })
+</script>
 <%- include('layout/footer',{isNav:true})%>

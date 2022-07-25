@@ -31,8 +31,6 @@
         // 根据pid获取数据
         $btnGetInfo.click(() => {
             $old_id = $('#pid').val()
-
-
             if ($old_id === '') {
                 alert('id不能为空')
                 return
@@ -43,7 +41,6 @@
             const data = {
                 "id": $old_id
             }
-
             post(url, data).then(res => {
                 if (res.errno !== 0) {
                     alert(res.message)
@@ -54,8 +51,6 @@
                 $('#account').val(res.data[0].account)
                 $('#mark').val(res.data[0].mark)
                 $('#typeId').val(res.data[0].typeId)
-
-                //打印信息  
             })
         })
 
@@ -66,7 +61,6 @@
             $account = $('#account').val()
             $mark = $('#mark').val()
             $typeId = $('#typeId').val()
-
             if ($id === '') {
                 alert('id不能为空')
                 return
@@ -74,7 +68,6 @@
                 alert('修改内容不能为空')
                 return
             }
-
             if ($id != $old_id) {
                 alert("id不一致")
                 return
