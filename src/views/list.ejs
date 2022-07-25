@@ -2,26 +2,17 @@
     <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">list</h1>
     <div>
         <form action="/api/account/list" method="post">
-            <div class="title-wrapper">
-                id:<input id="id" name="id" placeholder="可为空">
-            </div>
-            <div class="title-wrapper">
-                account:<input id="account" name="account" placeholder="可为空">
-            </div>
-            <div class="title-wrapper">
-                mark:<input id="mark" name="mark" placeholder="可为空">
-            </div>
-            <div class="content-wrapper">
-                typeId:<input id="typeId" name="typeId" placeholder="可为空">
-            </div>
-            <div>
-                <input type="submit" values="view" id="btn-create">
-            </div>
+            <table>
+                <tr><td>account</td><td>:</td><td><input id="account" name="id" placeholder="可为空"></td></tr>  
+                <tr><td>password</td><td>:</td><td><input id="password" name="account" placeholder="可为空"></td></tr>
+                <tr><td>mark</td><td>:</td><td><input id="mark" name="mark" placeholder="可为空"></td></tr>
+                <tr><td>typeId</td><td>:</td><td><input id="typeId" name="typeId" placeholder="可为空"></td></tr> 
+                <tr><td></td><td></td><td><input type="submit" values="view" id="btn-create"></td></tr>
+            </table>
         </form>
     </div>
-
 
     <script>
         //ajax请求接口
     </script>
-<%- include('layout/footer')%>
+<%- include('layout/footer',{isNav:true})%>

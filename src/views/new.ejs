@@ -1,22 +1,13 @@
 <%- include('layout/header', { title: '新建', isNav: true })%>
     <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">新建数据</h1>
     <div>
-        <div class="title-wrapper">
-            account:<input id="account" placeholder="请输入帐号">
-        </div>
-        <div class="title-wrapper">
-            password:<input id="password" placeholder="请输入密码">
-        </div>
-        <div class="title-wrapper">
-            mark:<input id="mark" placeholder="可为空">
-        </div>
-        <div class="content-wrapper">
-            typeId:<input id="typeId" placeholder="可为空"></textarea>
-        </div>
-        <div>
-            <button id="btn-create">创建</button>
-        </div>
-    </div>
+        <table>
+            <tr><td>account</td><td>:</td><td><input id="account" placeholder="请输入帐号"></td></tr>  
+            <tr><td>password</td><td>:</td><td><input id="password" placeholder="请输入密码"></td></tr>
+            <tr><td>mark</td><td>:</td><td><input id="mark" placeholder="可为空"></td></tr>
+            <tr><td>typeId</td><td>:</td><td><input id="typeId" placeholder="可为空"></td></tr> 
+            <tr><td></td><td></td><td><button id="btn-create" >创建</button></td></tr>
+        </table>
 
     <script>
         // 发送 post 请求
@@ -62,4 +53,4 @@
             })
         })
     </script>
-<%- include('layout/footer')%>
+<%- include('layout/footer',{isNav:true})%>
