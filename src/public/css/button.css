@@ -19,3 +19,8 @@ a {
     width: 300px;
     height: 150px;
 }
+
+.showList{
+    overflow:hidden;
+    word-break:break-all;
+}

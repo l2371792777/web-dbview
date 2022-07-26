@@ -1,5 +1,12 @@
 <%- include('layout/header', { title: '列表', isNav: true })%>
-<h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">list</h1>
+<div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+    <table>
+        <tr>
+            <td><a href="/new" target="_blank" style="color: #000;">新建</a></td>
+            <td><a href="/alter" target="_blank" style="color: #000;">修改</a></td> 
+        </tr>
+    </table>
+</div>
 <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px; ">
     <table>
         <tr>
@@ -28,13 +35,12 @@
         <tr>
             <td></td>
             <td></td>
-            <td><button id="btn-create">提交</button></td>
+            <td><button id="btn-select">查询</button></td>
         </tr>
-        </td>
-        </tr>
+
     </table>
 </div>
-<div style="overflow: auto; width:70%;height:300px;margin-left: 5%;margin-top: 10px;" id="showList">
+<div style="overflow: auto; width:75%;height:300px;margin-left: 5%;margin-top: 10px;" id="showList">
 </div>
 
 <script>
@@ -49,24 +55,26 @@
     }
     //生成表格
     function createrList(data) {
-        let str = "<table style='border: 1px solid black;'>";
-        str += "<tr><th>id</th><th>account</th><th>password</th><th>mark</th><th>typeId</th></tr>";
+        let str = "<table id='selectList' style='border: 1px solid black;'>";
+        str += "<tr><th>id</th><th>account</th><th>password</th><th>mark</th><th>typeId</th><th>修改</th></tr>";
         for (let i = 0; i < data.length; i++) {
             str += "<tr>";
             for (let key in data[i]) {
-                str += "<td class='showList' data-clipboard-text='"+data[i][key]+"'>" + JSON.stringify(data[i][key]) + "</td>";
+                str += "<td class='showList' data-clipboard-text='" + data[i][key] + "'>" + JSON.stringify(data[i][
+                    key
+                ]) + "</td>";
             }
+            str += "<td><button class='button-delete' value='" + data[i]['id'] + "'>删除</button></td>";
             str += "</tr>"
         }
         str += "</table>";
         return str;
     }
 
-    // 获取 dom 元素
-    $btnCreate = $('#btn-create')
-
+    //查询数据
+    $btnSelect = $('#btn-select')
     // 提交数据
-    $btnCreate.click(() => {
+    $btnSelect.click(() => {
         $id = $('#id').val()
         $account = $('#account').val()
         $mark = $('#mark').val()
@@ -82,10 +90,12 @@
 
         post(url, data).then(res => {
             if (res.errno !== 0) {
+                $("#showList").html("");
                 alert(res.message)
                 return
             }
             $("#showList").html(createrList(res.data));
+            onDel();
             //复制表格内容
             let btns = document.querySelectorAll('.showList');
             let clipboard = new ClipboardJS(btns);
@@ -102,5 +112,28 @@
             //location.href = '/admin.html'
         })
     })
+
+    //删除数据
+    function onDel() {
+        $btnSL = $('#selectList')
+        $btnSL.click((e) => {
+            $id = e.target.value;
+            console.info($id)
+            if (!confirm("确定删除改数据？")) {
+                return;
+            }
+            const url = '/api/account/delete'
+            const data = {
+                "id": $id,
+            }
+            post(url, data).then(res => {
+                if (res.errno !== 0) {
+                    alert('操作错误')
+                    return
+                }
+                alert('删除成功')
+            })
+        })
+    }
 </script>
 <%- include('layout/footer',{isNav:true})%>
