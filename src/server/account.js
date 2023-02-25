@@ -49,7 +49,6 @@ async function alter(data) {
 
 async function select({ id, account, mark, userId, typeId }) {
     // 连表查询
-    console.log(userId)
     let whereOpt={
         account: { [Sequelize.Op.like]: `%${account}%` },
             mark: { [Sequelize.Op.like]: `%${mark}%` },
@@ -67,7 +66,6 @@ async function select({ id, account, mark, userId, typeId }) {
 }
 
 async function idTouserId(id){
-    console.log("__id "+id)
     const result=Account.findOne({
         where:{
             id

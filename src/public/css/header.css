@@ -1,3 +1,4 @@
+/* 导航栏 */
 .header-ul{
     position: fixed;
     top:0;
@@ -6,6 +7,7 @@
     list-style-type:none;
     margin:0;
     padding: 0;
+    height:45px;
     overflow: hidden;
     background-color: #333;
 }
@@ -30,6 +32,7 @@ li a:hover:not(.active){
 li:last-child {
     border-right: none;
 }
+/* 登录窗口 */
 .main{
 	text-align: center;
 	background-color: #fff;

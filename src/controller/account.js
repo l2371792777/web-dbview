@@ -8,7 +8,6 @@ const { create, select, destroy, alter,idTouserId } = require('../server/account
 
 
 async function selectAccount({userId, id, account, mark, typeId }) {
-    console.log("id____ "+id)
     const data = {
         id: id ? id : '',
         account: account ? account : '',

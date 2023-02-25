@@ -1,12 +1,17 @@
+/* 全局 */
 body {
     padding: 0;
     margin: 0;
+    position: relative;
 }
 
 textarea {
     border: 0;
     resize: none;
     outline: none;
+}
+html,body{
+    height: 100%;
 }
 
 .bold {
