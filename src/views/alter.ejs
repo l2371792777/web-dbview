@@ -1,9 +1,9 @@
 
-<%- include('layout/header', { title: '修改', isNav: false })%>
+<%- include('layout/header-list', { title: '修改', isNav: true })%>
 
-    <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">修改数据</h1>
+    <h1 class="title">修改数据</h1>
     <div>
-        <table style="margin-left: 10px;">
+        <table class="input">
             <tr><td>id</td><td>:</td><td><input id="pid"></td><td><button id="btn-getinfo">获取数据</button></td></tr>
             <tr><td>account</td><td>:</td><td><input id="account"></td></tr>  
             <tr><td>password</td><td>:</td><td><input id="password"></td></tr>
@@ -14,16 +14,6 @@
     </div>
 
     <script>
-        // 发送 post 请求
-        function post(url, data = {}) {
-            return $.ajax({
-                type: 'post',
-                url: url,
-                data: JSON.stringify(data),
-                contentType: "application/json",
-            })
-        }
-
         // 获取 dom 元素
         $btnCreate = $('#btn-create')
         $btnGetInfo = $('#btn-getinfo')
@@ -91,4 +81,4 @@
             })
         })
     </script>
-<%- include('layout/footer',{isNav:false})%>
+<%- include('layout/footer-list',{isNav:false})%>

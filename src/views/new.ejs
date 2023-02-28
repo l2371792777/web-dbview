@@ -1,7 +1,7 @@
-<%- include('layout/header', { title: '新建', isNav: false })%>
-    <h1 style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">新建数据</h1>
+<%- include('layout/header-list', { title: '新建', isNav: true })%>
+    <h1 class="title">新建数据</h1>
     <div>
-        <table style="margin-left: 10px;">
+        <table class="input">
             <tr><td>account</td><td>:</td><td><input id="account" placeholder="请输入帐号"></td></tr>  
             <tr><td>password</td><td>:</td><td><input id="password" placeholder="请输入密码"></td></tr>
             <tr><td>mark</td><td>:</td><td><input id="mark" placeholder="可为空"></td></tr>
@@ -10,16 +10,6 @@
         </table>
 
     <script>
-        // 发送 post 请求
-        function post(url, data = {}) {
-            return $.ajax({
-                type: 'post',
-                url: url,
-                data: JSON.stringify(data),
-                contentType: "application/json",
-            })
-        }
-
         // 获取 dom 元素
         $btnCreate = $('#btn-create')
 
@@ -53,4 +43,4 @@
             })
         })
     </script>
-<%- include('layout/footer',{isNav:false})%>
+<%- include('layout/footer-list',{isNav:false})%>
