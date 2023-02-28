@@ -1,4 +1,4 @@
-<%- include('layout/header', { title: '列表', isNav: true })%>
+<%- include('layout/header', { title: '列表', isNav: false })%>
 <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
     <table style="margin-left: 10px;">
         <tr>
@@ -42,7 +42,7 @@
 </div>
 <div style="overflow: auto; width:85%;margin-left: 5%;margin-top: 10px;" id="showList">
 </div>
-
+<div style="position: relative; bottom: 0;height: 10px;"></div>
 <script>
     // 发送 post 请求
     function post(url, data = {}) {
@@ -140,4 +140,4 @@
         })
     }
 </script>
-<%- include('layout/footer',{isNav:true})%>
+<%- include('layout/footer',{isNav:false})%>

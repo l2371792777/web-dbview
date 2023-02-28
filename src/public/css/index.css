@@ -1,0 +1,49 @@
+/* 全局 */
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* 导航栏 */
+.header-ul {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    text-align: center;
+    overflow: hidden;
+}
+
+li {
+    display: inline-block;
+}
+
+a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color:rgba(11,23,70,0.1);
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+li:last-child {
+    border-right: none;
+}

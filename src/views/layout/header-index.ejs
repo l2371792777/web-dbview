@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=locals.title%></title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <% if (locals.isNav) { %>
+        <%# 有导航%>
+    
+        <nav>
+            <div>
+            <ul class="header-ul">
+                <li>
+                    <a href="/list" target="_blank">
+                        账号
+                    </a>
+                </li>
+            </ul>
+            </div>
+    </nav>
+    <% } %>

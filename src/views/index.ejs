@@ -1,9 +1,9 @@
+<%- include('layout/header-index', { title: 'index', isNav: true })%>
 
-<%- include('layout/header', { isNav: false })%>
 <script>
     let bodyselector=document.getElementsByTagName('body');
     console.log(bodyselector[0])
     bodyselector[0].style.background="url('/img/background2.jpg') no-repeat fixed center center"
     bodyselector[0].style.backgroundSize="cover"
 </script>
-<%- include('layout/footer',{isNav:true})%>
+<%- include('layout/footer-index',{isNav:true})%>
