@@ -1,9 +1,27 @@
 <%- include('layout/header-index', { title: 'index', isNav: true })%>
 
 <script>
-    let bodyselector=document.getElementsByTagName('body');
-    console.log(bodyselector[0])
-    bodyselector[0].style.background="url('/img/background2.jpg') no-repeat fixed center center"
-    bodyselector[0].style.backgroundSize="cover"
+    function preloading(){
+        if(document.getElementsByTagName){
+            let bodyselector=document.getElementsByTagName('body');
+            console.log(bodyselector[0])
+            bodyselector[0].style.background="url('/img/background2.jpg') no-repeat fixed center center"
+            bodyselector[0].style.backgroundSize="cover"
+        }
+    }
+    function addLoadEvent(func){
+        var oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+        window.onload = func;
+        } else {
+        window.onload = function() {
+            if (oldonload) {
+                oldonload();
+            }
+            func();
+            }
+        }
+    }
+    addLoadEvent(preloading);
 </script>
 <%- include('layout/footer-index',{isNav:true})%>
