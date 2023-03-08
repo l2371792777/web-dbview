@@ -39,7 +39,7 @@ a {
     height: 20px;
     text-decoration: none;
 }
-.listicon{
+.icon{
     background-image: url("/img/icon1.svg");
     background-size: 30px 30px;
     background-repeat: no-repeat;
@@ -50,8 +50,12 @@ a {
     width: 20px;
     height: 15px;
 }
-p{
+li p{
     font-size: 15px;
+    width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 li:hover:not(.active) {
