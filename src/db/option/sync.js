@@ -1,5 +1,5 @@
 const seq = require('../seq')
- require('../model/model')
+require('../model/model')
 
 seq.authenticate().then(() => {
     console.log('ok')
@@ -7,6 +7,6 @@ seq.authenticate().then(() => {
     console.log('error')
 })
 
-seq.sync({ force: true }).then(() => {
+seq.sync({ force: false }).then(() => {
     process.exit()
 })

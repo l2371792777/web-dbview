@@ -17,8 +17,11 @@ async function getUserInfo(userName,password){
     if (password) {
         Object.assign(whereOpt, { password })
     }
+    else{
+        return null
+    }
     const result = await User.findOne({
-        attributes: ['id', 'userName', 'grade'],
+        attributes: ['id', 'userName','password', 'grade'],
         where: whereOpt
     })
     if (result == null) {

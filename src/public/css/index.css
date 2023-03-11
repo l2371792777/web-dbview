@@ -19,7 +19,7 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 50px;
+    height: 52px;
     text-align: center;
     overflow: hidden;
 }
@@ -27,7 +27,7 @@ body {
 li {
     display: inline-block;
     width: 60px;
-    height: 45px;
+    height: 52px;
 }
 
 a {
@@ -36,10 +36,11 @@ a {
     text-align: center;
     padding: 5px 15px 0 15px;
     width: 30px;
-    height: 20px;
+    height: 22px;
     text-decoration: none;
 }
 .icon{
+    margin-top: 2px;
     background-image: url("/img/icon1.svg");
     background-size: 30px 30px;
     background-repeat: no-repeat;

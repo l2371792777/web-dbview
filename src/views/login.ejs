@@ -22,8 +22,8 @@
     <% } else { %>
         <form>
             <table>
-                <tr><td>用户名</td> <td>:</td> <td><input type="text" id="input-username" placeholder="请输入用户名"></td></tr>
-                <tr><td>密码</td> <td>:</td> <td><input type="password"  id="input-password" placeholder="请输入密码"></td></tr>
+                <tr><td>用户名</td> <td>:</td> <td><input type="text" id="input-username" autocomplete="off" placeholder="请输入用户名"></td></tr>
+                <tr><td>密码</td> <td>:</td> <td><input type="password"  id="input-password" autocomplete="off" placeholder="请输入密码"></td></tr>
             </table>
             <button type="submit" id="btn-submit">登录</button>
     </form>
@@ -48,7 +48,7 @@
                         return
                     }
                     // 跳转到指定 url 或首页
-                    var redirectUrl = $.query.get('url') || '/'
+                    var redirectUrl = $.query.get('url') || '/list'
                     location.href = redirectUrl
                 })
             })

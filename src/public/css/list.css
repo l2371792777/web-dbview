@@ -48,8 +48,3 @@ li:last-child {
     margin-left: 10px;
 }
 
-textarea {
-    border: 0;
-    resize: none;
-    outline: none;
-}

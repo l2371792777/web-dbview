@@ -57,6 +57,19 @@ const User=seq.define("user",{
     }
 })
 
+const Message=seq.define('message',{
+    name:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        default:"ayatonn",
+        comment:"昵称"
+    },
+    content:{
+        type:Sequelize.STRING,
+        allowNull:false,
+        comment:"内容"
+    }
+})
 
 Type.hasMany(Account,{
     foreignKey:'typeId'
@@ -75,5 +88,6 @@ Account.belongsTo(Type,{
 module.exports = {
     Account,
     Type,
-    User
+    User,
+    Message
 }

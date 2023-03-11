@@ -51,7 +51,7 @@ module.exports={
         message:'修改失败'
     },
     selectAccountFailInfo:{
-        errno:10011,
+        errno:10012,
         message:'数据为空'
     }
 }

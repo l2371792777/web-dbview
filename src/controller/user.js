@@ -2,22 +2,26 @@
  * @description user 数据处理
  */
 
- const { getUserInfo} = require('../server/user')
- const { SuccessModel, ErrorModel } = require('../model/ResModel')
- const {
-    userPasswordErrorInfo, updateUserPasswordFailInfo, updateUserFailInfo, registerUserNameNotExistInfo, registerUserNameExistInfo, registerFailInfo, userLoginFailInfo, deleteUserFailInfo
+const { getUserInfo } = require('../server/user')
+const { SuccessModel, ErrorModel } = require('../model/ResModel')
+const {
+    userLoginFailInfo
 } = require('../model/ErrorInfo')
 
 
-async function login(ctx,userName,password){
-    const userInfo=await getUserInfo(userName,password)
-    if(!userInfo){
+async function login(ctx, userName, password) {
+    const userInfo = await getUserInfo(userName, password)
+    if (!userInfo) {
         return new ErrorModel(userLoginFailInfo)
     }
-    ctx.session.userInfo=userInfo
+    if (userInfo.userName !== userName || userInfo.password !== password) {
+        return new ErrorModel(userLoginFailInfo)
+    }
+    delete userInfo.password
+    ctx.session.userInfo = userInfo
     return new SuccessModel()
 }
 
-module.exports={
+module.exports = {
     login
 }
