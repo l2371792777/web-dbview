@@ -1,18 +1,69 @@
-<%- include('layout/header-list', { title: '留言板', isNav: false })%>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mesboard</title>
+    <script src="/js/JQuery.js"></script>
+    <link href="/css/mesboard.css" rel="stylesheet">
+</head>
+
+<body>
     <h1 class="title">留言板</h1>
     <div>
         <table class="input">
-            <tr><td>message</td><td>:</td><td><input id="account" placeholder="输入要发送内容"></td></tr>  
-            <tr><td></td><td></td><td><button id="btn-send" >发送</button></td></tr>
+            <tr><td><P name="sender">message:</P></td></tr>
+            <tr><td><textarea id="message" placeholder="输入要发送内容"></textarea></td></tr>  
+            <tr><td><button id="btn-send" >发送</button></td></tr>
         </table>
     </div>
 
+    <div class="showMes">
+
+    </div>
 
     <script>
     //生成昵称
-    
+    const charStr="abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789"
+    let rxStr="";
+    for(let i=7;i>0;i--){
+        let index=Math.floor(Math.random()*charStr.length);
+        rxStr+=charStr[i];
+    }
+    let sender=document.getElementsByName("sender");
+    sender[0].innerText=rxStr+":";
+
+    //提交信息  
+    /// 发送 post 请求
+    function post(url, data = {}) {
+        return $.ajax({
+            type: 'post',
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+        })
+    }
+    const btnsend=document.getElementById("btn-send");
+    const messagemd=document.getElementById("message");
+    btnsend.click(()=>{
+        let message=messagemd.innerText;
+        const url = '/api/mesboard/send';
+        const data = {
+            "name": rxStr,
+            "message": message
+        }
+    })
+    post(url, data).then(res => {
+            if (res.errno !== 0) {
+                $("#showList").html("");
+                alert(res.message)
+                return
+            }
+        })
     //获取信息列表
     
-    //提交信息   
     </script>
-<%- include('layout/footer-list',{isNav:false})%>
+</body>
+</html>
