@@ -53,5 +53,9 @@ module.exports={
     selectAccountFailInfo:{
         errno:10012,
         message:'数据为空'
+    },
+    createMesFailInfo:{
+        errno:10013,
+        message:'创建失败'
     }
 }

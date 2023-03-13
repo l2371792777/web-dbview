@@ -13,14 +13,14 @@
 <body>
     <h1 class="title">留言板</h1>
     <div>
-        <table class="input">
-            <tr><td><P name="sender">message:</P></td></tr>
-            <tr><td><textarea id="message" placeholder="输入要发送内容"></textarea></td></tr>  
+        <table class="inputMes">
+            <tr><td><P name="sender">content:</P></td></tr>
+            <tr><td><textarea id="content" placeholder="输入要发送内容"></textarea></td></tr>  
             <tr><td><button id="btn-send" >发送</button></td></tr>
         </table>
     </div>
 
-    <div class="showMes">
+    <div class="showMes" id="showMes">
 
     </div>
 
@@ -30,7 +30,7 @@
     let rxStr="";
     for(let i=7;i>0;i--){
         let index=Math.floor(Math.random()*charStr.length);
-        rxStr+=charStr[i];
+        rxStr+=charStr[index];
     }
     let sender=document.getElementsByName("sender");
     sender[0].innerText=rxStr+":";
@@ -46,24 +46,46 @@
         })
     }
     const btnsend=document.getElementById("btn-send");
-    const messagemd=document.getElementById("message");
-    btnsend.click(()=>{
-        let message=messagemd.innerText;
-        const url = '/api/mesboard/send';
+    const contentmd=document.getElementById("content");
+    btnsend.addEventListener('click',()=>{
+        let content=contentmd.value;
+        let url = '/api/mesboard/new';
         const data = {
             "name": rxStr,
-            "message": message
+            "content": content
         }
-    })
-    post(url, data).then(res => {
+        post(url, data).then(res => {
             if (res.errno !== 0) {
-                $("#showList").html("");
-                alert(res.message)
+                alert(res.content)
                 return
             }
+            contentmd.value='';
         })
-    //获取信息列表
+    })
     
+    //获取信息列表
+    /// 生成表格
+    function createTable(data){
+        let str = "<table id='showListTB' style='border: 1px solid black;'>";
+        for (let i = 0; i < data.length; i++) {
+            str += "<tr>";
+            for (let key in data[i]) {
+                str += "<td class='showListTD'>" + JSON.stringify(data[i][key]) + "</td>";
+            }
+            str += "</tr>"
+        }
+        str += "</table>";
+        return str;
+    } 
+    let url='/api/mesboard/list'
+    post(url).then(res=>{
+        if(res.errno!=0){
+            alert(errno.message);
+            return;
+        }
+        let str=createTable(res.data)
+        document.getElementById("showMes").innerHTML=str
+    })
     </script>
 </body>
 </html>
