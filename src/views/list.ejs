@@ -1,27 +1,27 @@
 <%- include('layout/header-list', { title: '列表', isNav: true })%>
 <h1 class="title">查询数据</h1>
-<div>
-    <form autocomplete="off">
+
+<div>    
         <table class="input">
             <tr>
                 <td>id</td>
                 <td>:</td>
-                <td><input id="id" name="id" placeholder="可为空"></td>
+                <td><input id="id" name="id" placeholder="可为空" autocomplete="off"></td>
             </tr>
             <tr>
                 <td>account</td>
                 <td>:</td>
-                <td><input id="account" name="account" placeholder="可为空"></td>
+                <td><input id="account" name="account" placeholder="可为空" autocomplete="off"></td>
             </tr>
             <tr>
                 <td>mark</td>
                 <td>:</td>
-                <td><input id="mark" name="mark" placeholder="可为空"></td>
+                <td><input id="mark" name="mark" placeholder="可为空" autocomplete="off"></td>
             </tr>
             <tr>
                 <td>typeId</td>
                 <td>:</td>
-                <td><input id="typeId" name="typeId" placeholder="可为空"></td>
+                <td><input id="typeId" name="typeId" placeholder="可为空" autocomplete="off"></td>
             </tr>
             <tr>
                 <td></td>
@@ -31,8 +31,7 @@
                 <td></td>
                 <td><button id="btn-select">查询</button></td>
             </tr>
-        </table>
-    </form>
+        </table>   
 </div>
 <div style="overflow: auto; width:85%;margin-left: 5%;margin-top: 10px;" id="showList">
 </div>

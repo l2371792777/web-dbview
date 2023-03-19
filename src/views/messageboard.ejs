@@ -77,15 +77,19 @@
         str += "</table>";
         return str;
     } 
-    let url='/api/mesboard/list'
-    post(url).then(res=>{
-        if(res.errno!=0){
-            alert(errno.message);
-            return;
-        }
-        let str=createTable(res.data)
-        document.getElementById("showMes").innerHTML=str
-    })
+    function getList(){
+        let url='/api/mesboard/list'
+        post(url).then(res=>{
+            if(res.errno!=0){
+                alert(errno.message);
+                return;
+            }
+            let str=createTable(res.data)
+            document.getElementById("showMes").innerHTML=str
+        })
+    }
+    //定时刷新
+    setInterval(getList,1000)
     </script>
 </body>
 </html>

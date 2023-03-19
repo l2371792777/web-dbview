@@ -31,7 +31,10 @@ async function create({ name,content }) {
 
 async function select() {
     const result = Message.findAll({
-        attributes: ['id', 'name', 'createdAt','content']
+        attributes: ['id', 'name', 'createdAt','content'],
+        order:[
+            ['createdAt','DESC']
+        ]
     })
     return result
 }

@@ -1,15 +1,13 @@
 <%- include('layout/header-list', { title: '新建', isNav: true })%>
     <h1 class="title">新建数据</h1>
     <div>
-        <form autocomplete="off"></form>
             <table class="input">
-                <tr><td>account</td><td>:</td><td><input id="account" placeholder="请输入帐号"></td></tr>  
-                <tr><td>password</td><td>:</td><td><input id="password" placeholder="请输入密码"></td></tr>
-                <tr><td>mark</td><td>:</td><td><input id="mark" placeholder="可为空"></td></tr>
-                <tr><td>typeId</td><td>:</td><td><input id="typeId" placeholder="可为空"></td></tr> 
+                <tr><td>account</td><td>:</td><td><input id="account" placeholder="请输入帐号" autocomplete="off"></td></tr>  
+                <tr><td>password</td><td>:</td><td><input id="password" placeholder="请输入密码" autocomplete="off"></td></tr>
+                <tr><td>mark</td><td>:</td><td><input id="mark" placeholder="可为空" autocomplete="off"></td></tr>
+                <tr><td>typeId</td><td>:</td><td><input id="typeId" placeholder="可为空" autocomplete="off"></td></tr> 
                 <tr><td></td><td></td><td><button id="btn-create" >创建</button></td></tr>
             </table>
-        </form>
     </div>
     <script>
         // 获取 dom 元素
