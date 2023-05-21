@@ -60,6 +60,7 @@
                 return
             }
             contentmd.value='';
+            getList();
         })
     })
     
@@ -76,7 +77,8 @@
         }
         str += "</table>";
         return str;
-    } 
+    }
+    // 刷新列表 
     function getList(){
         let url='/api/mesboard/list'
         post(url).then(res=>{
@@ -88,8 +90,6 @@
             document.getElementById("showMes").innerHTML=str
         })
     }
-    //定时刷新
-    setInterval(getList,1000)
     </script>
 </body>
 </html>
