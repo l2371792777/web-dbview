@@ -3,14 +3,14 @@
  *   */
 
 const MYSQL_CONF={
-	    host:'119.29.37.150',
-	    user:'ayanami',
-	    password:'ayanami',
-	    database:'myaccount' 
+	    host:'',
+	    user:'',
+	    password:'',
+	    database:'' 
 }
 const REDIS_CONF={
-	    host:'localhost',
-	    port:'6379'
+	    host:'',
+	    port:''
 }
 
 module.exports={
